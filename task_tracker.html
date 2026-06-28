@@ -3,9 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task Manager Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>hello word we are getting there for sure as quickly as possible</h1>
+    <main class="app-shell">
+        <section class="workspace" aria-label="Task manager">
+            <aside class="sidebar" aria-label="Task summary">
+                <div class="brand">
+                    <span class="brand-mark" aria-hidden="true">T</span>
+                    <div>
+                        <p class="eyebrow">Workspace</p>
+                        <h1>Task Tracker</h1>
+                    </div>
+                </div>
+
+                <div class="progress-panel">
+                    <div class="progress-copy">
+                        <span id="progressLabel">0% complete</span>
+                        <strong id="openCount">0 open</strong>
+                    </div>
+                    <div class="progress-track" aria-hidden="true">
+                        <span id="progressBar"></span>
+                    </div>
+                </div>
+
+                <div class="stats-grid" aria-label="Task statistics">
+                    <article>
+                        <span id="totalTasks">0</span>
+                        <p>Total</p>
+                    </article>
+                    <article>
+                        <span id="todayTasks">0</span>
+                        <p>Due today</p>
+                    </article>
+                    <article>
+                        <span id="urgentTasks">0</span>
+                        <p>High</p>
+                    </article>
+                    <article>
+                        <span id="doneTasks">0</span>
+                        <p>Done</p>
+                    </article>
+                </div>
+
+                <nav class="filter-stack" aria-label="Task filters">
+                    <button class="filter-button active" type="button" data-filter="all">
+                        <span aria-hidden="true">All</span>
+                        <strong id="allBadge">0</strong>
+                    </button>
+                    <button class="filter-button" type="button" data-filter="open">
+                        <span aria-hidden="true">Open</span>
+                        <strong id="openBadge">0</strong>
+                    </button>
+                    <button class="filter-button" type="button" data-filter="done">
+                        <span aria-hidden="true">Done</span>
+                        <strong id="doneBadge">0</strong>
+                    </button>
+                </nav>
+            </aside>
+
+            <section class="task-board">
+                <header class="board-header">
+                    <div>
+                        <p class="eyebrow">Today</p>
+                        <h2>Plan, track, finish</h2>
+                    </div>
+                    <label class="search-box">
+                        <span aria-hidden="true">Search</span>
+                        <input id="searchInput" type="search" placeholder="Search tasks">
+                    </label>
+                </header>
+
+                <form class="task-form" id="taskForm">
+                    <label>
+                        <span>Task</span>
+                        <input id="taskTitle" type="text" placeholder="Add a task" required maxlength="80">
+                    </label>
+                    <label>
+                        <span>Priority</span>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Due</span>
+                        <input id="taskDue" type="date">
+                    </label>
+                    <button class="primary-button" type="submit">Add</button>
+                </form>
+
+                <section class="list-panel" aria-live="polite">
+                    <div class="list-header">
+                        <h3>Tasks</h3>
+                        <button class="ghost-button" id="clearDone" type="button">Clear done</button>
+                    </div>
+                    <div class="task-list" id="taskList"></div>
+                    <p class="empty-state" id="emptyState">No matching tasks. Add one above to start tracking.</p>
+                </section>
+            </section>
+        </section>
+    </main>
+
+    <template id="taskTemplate">
+        <article class="task-item">
+            <label class="task-check">
+                <input type="checkbox">
+                <span aria-hidden="true"></span>
+            </label>
+            <div class="task-content">
+                <h4></h4>
+                <div class="task-meta">
+                    <span class="priority-pill"></span>
+                    <span class="due-pill"></span>
+                </div>
+            </div>
+            <button class="icon-button" type="button" aria-label="Delete task" title="Delete task">x</button>
+        </article>
+    </template>
+
+    <script src="script.js"></script>
 </body>
 </html>
